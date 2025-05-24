@@ -58,8 +58,10 @@
 </head>
 <body>
 
-  <div id="mensaje-sonido">💖 Toca la pantalla 💖</div>
-
+   <div id="mensaje-sonido">
+    💖 Toca la pantalla 💖
+    <div id="firma">Att:El amor de tu vida</div>
+  </div>
   <audio id="bgMusic" src="Love.mp3" loop></audio>
 
   <script>
@@ -70,7 +72,7 @@
     function crearTeAmo() {
       const div = document.createElement('div');
       div.classList.add('te-amo');
-      div.innerText = '¡Te amo mi princesa!';
+      div.innerText = '¡Te amo Elizabeth!';
 
       // Posición horizontal aleatoria
       div.style.left = Math.random() * window.innerWidth + 'px';
