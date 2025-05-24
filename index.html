@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lluvia de Te Amo con Música</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+      color: #ff4d6d;
+      font-family: monospace;
+      height: 100vh;
+      position: relative;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .te-amo {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 20px;
+      animation: caer 5s linear forwards;
+      color: #ff69b4;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    #mensaje-sonido {
+      position: absolute;
+      top: 40%;
+      left: 10%;
+      right: 10%;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="mensaje-sonido">💖 Toca la pantalla 💖</div>
+
+  <audio id="bgMusic" src="Love.mp3" loop></audio>
+
+  <script>
+    const body = document.body;
+    const music = document.getElementById('bgMusic');
+    const mensaje = document.getElementById('mensaje-sonido');
+
+    function crearTeAmo() {
+      const div = document.createElement('div');
+      div.classList.add('te-amo');
+      div.innerText = '¡Te amo!';
+
+      // Posición horizontal aleatoria
+      div.style.left = Math.random() * window.innerWidth + 'px';
+
+      // Tamaño aleatorio
+      div.style.fontSize = (16 + Math.random() * 16) + 'px';
+
+      body.appendChild(div);
+
+      // Quitar el div después de la animación (5 segundos)
+      setTimeout(() => div.remove(), 5000);
+    }
+
+    // Crear un "¡Te amo!" cada 200 ms
+    let intervalId;
+
+    // Escuchar clic para activar música y empezar animación
+    function activarMusica() {
+      music.play();
+      mensaje.style.display = 'none';
+      intervalId = setInterval(crearTeAmo, 200);
+      document.removeEventListener('click', activarMusica);
+    }
+
+    document.addEventListener('click', activarMusica);
+
+  </script>
+</body>
+</html>
